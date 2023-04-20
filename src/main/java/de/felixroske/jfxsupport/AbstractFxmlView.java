@@ -77,7 +77,7 @@ public abstract class AbstractFxmlView implements ApplicationContextAware {
 		annotation = getFXMLAnnotation();
 		resource = getURLResource(annotation);
 		presenterProperty = new SimpleObjectProperty<>();
-		bundle = getResourceBundle(getBundleName());
+		bundle = getResourceBundle(getBundleName(), getClass().getModule());
 	}
 
 	/**
@@ -497,11 +497,10 @@ public abstract class AbstractFxmlView implements ApplicationContextAware {
 	 *            the name of the resource bundle.
 	 * @return the resource bundle
 	 */
-	private Optional<ResourceBundle> getResourceBundle(final String name) {
+	private Optional<ResourceBundle> getResourceBundle(final String name, Module module) {
 		try {
 			LOGGER.debug("Resource bundle: " + name);
-			return Optional.of(getBundle(name,
-				new ResourceBundleControl(getResourceBundleCharset())));
+			return Optional.of(getBundle(name, module));
 		} catch (final MissingResourceException ex) {
 			LOGGER.debug("No resource bundle could be determined: " + ex.getMessage());
 			return Optional.empty();

@@ -1,17 +1,19 @@
 package de.felixroske.jfxsupport;
 
-import de.felixroske.jfxtest.*;
-import org.junit.jupiter.api.*;
-import org.springframework.beans.factory.annotation.*;
-import org.testfx.framework.junit5.*;
-import org.testfx.util.*;
+import de.felixroske.jfxtest.SampleView;
+import de.felixroske.jfxtest.SpringJavaFxTestingBase;
+import javafx.application.Platform;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.testfx.framework.junit5.Start;
+import org.testfx.util.WaitForAsyncUtils;
 
-import java.lang.management.*;
-import javafx.application.*;
-import javafx.stage.*;
-
-import static org.testfx.api.FxAssert.*;
-import static org.testfx.matcher.base.NodeMatchers.*;
+import static org.testfx.api.FxAssert.verifyThat;
+import static org.testfx.matcher.base.NodeMatchers.isVisible;
 
 public class SampleViewTest extends SpringJavaFxTestingBase {
 
